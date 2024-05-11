@@ -52,3 +52,20 @@ def weather_etl():
     @task
     def extract(api_results, mountain):
         return [mountain]+json.loads(api_results)['list']
+    @task
+    def transform(extracted_ski_resorts):
+        result = [
+            {
+                'name': mountain,
+                'date': datetime.utcfromtimestamp(entry['dt']).strftime('%Y-%m-%d %H:%M:%S'),
+                'temp': entry['main']['temp'],
+                'weather': entry['weather'][0]['description'],
+                'wind': entry['wind']['speed'] if 'wind' in entry else None,
+                'snow': entry['snow']['3h'] if 'snow' in entry else None,
+                'rain': entry['rain']['3h'] if 'rain' in entry else None,
+
+            }
+            for mountain, *entries in extracted_ski_resorts
+            for entry in entries
+        ]
+        return result
