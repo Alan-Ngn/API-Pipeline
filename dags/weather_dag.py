@@ -69,3 +69,11 @@ def weather_etl():
             for entry in entries
         ]
         return result
+
+    @task
+    def load(data):
+        sqlite_hook=SqliteHook(sqlite_conn_id='sqlite_dev_db')
+        target_fields = ['name', 'date', 'temp', 'weather', 'wind', 'snow','rain']
+        rows = [(entry['name'], entry['date'], entry['temp'], entry['weather'], entry['wind'], entry['snow'], entry['rain']) for entry in data]
+        sqlite_hook.insert_rows(table='weather',rows=rows, target_fields=target_fields)
+
