@@ -77,3 +77,22 @@ def weather_etl():
         rows = [(entry['name'], entry['date'], entry['temp'], entry['weather'], entry['wind'], entry['snow'], entry['rain']) for entry in data]
         sqlite_hook.insert_rows(table='weather',rows=rows, target_fields=target_fields)
 
+    # extracting data with task
+    extracted_resorts=[]
+    for resort in ski_resorts:
+        resort_task_id = resort['mountain'].replace(' ', '_').lower()
+        get_weather_results_task = HttpOperator(
+            task_id =f'weather_fetch_{resort_task_id}',
+            method = 'GET',
+            http_conn_id='openweathermap_api',
+            endpoint=f'/data/2.5/forecast',
+            headers={"Content-Type": "application/json"},
+            data={
+                'lat':resort['lat'],
+                'lon':resort['lon'],
+                'appid':OPENWEATHERMAP_API_KEY,
+                'units':'metric'
+            },
+            do_xcom_push=True,
+        )
+        extracted_resorts.append(extract(api_results=get_weather_results_task.output, mountain=resort['mountain']))
