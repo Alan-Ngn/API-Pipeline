@@ -96,3 +96,8 @@ def weather_etl():
             do_xcom_push=True,
         )
         extracted_resorts.append(extract(api_results=get_weather_results_task.output, mountain=resort['mountain']))
+
+    transformed_data = transform(extracted_resorts)
+    load_data = load(transformed_data)
+
+weather_etl()
