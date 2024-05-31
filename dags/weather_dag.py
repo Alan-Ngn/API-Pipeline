@@ -18,6 +18,7 @@ default_args = {
     schedule_interval=timedelta(days=1),
     catchup=False
 )
+
 def weather_etl():
     ski_resorts=[
                     {
