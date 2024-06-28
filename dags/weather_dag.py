@@ -21,29 +21,9 @@ default_args = {
 def weather_etl():
     ski_resorts=[
                     {
-                        'lat': 46.92930718381659,
-                        'lon':-121.50084437354852,
-                        'mountain': 'Crystal Mountain'
-                    },
-                    {
-                        'lat': 47.408923006793,
-                        'lon':-121.4130210782378,
-                        'mountain': 'Summit at Snoqualmie'
-                    },
-                    {
-                        'lat': 47.74457508492699,
-                        'lon':-121.08910872510756,
-                        'mountain': 'Stevens Pass'
-                    },
-                    {
-                        'lat': 39.63392622173591,
-                        'lon':-105.87151011534075,
-                        'mountain': 'Araphaoe Basin'
-                    },
-                    {
-                        'lat': 39.478058458168334,
-                        'lon':-106.16144782958219,
-                        'mountain': 'Copper Mountain'
+                        'lat': 21.315603,
+                        'lon':-157.858093,
+                        'mountain': 'Honolulu'
                     },
                 ]
 
