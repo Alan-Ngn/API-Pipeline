@@ -1,0 +1,360 @@
+[2024-06-29T23:00:23.005+0000] {processor.py:161} INFO - Started process (PID=38) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:00:23.006+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:00:23.008+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:00:23.008+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:00:23.028+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:00:23.027+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:00:23.029+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:00:23.042+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.041 seconds
+[2024-06-29T23:00:53.203+0000] {processor.py:161} INFO - Started process (PID=94) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:00:53.205+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:00:53.206+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:00:53.206+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:00:53.222+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:00:53.221+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:00:53.223+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:00:53.231+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.031 seconds
+[2024-06-29T23:01:24.197+0000] {processor.py:161} INFO - Started process (PID=150) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:01:24.197+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:01:24.198+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:01:24.198+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:01:24.212+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:01:24.210+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:01:24.212+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:01:24.220+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.026 seconds
+[2024-06-29T23:01:54.248+0000] {processor.py:161} INFO - Started process (PID=206) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:01:54.250+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:01:54.251+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:01:54.251+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:01:54.264+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:01:54.263+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:01:54.264+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:01:54.272+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.025 seconds
+[2024-06-29T23:02:24.455+0000] {processor.py:161} INFO - Started process (PID=262) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:02:24.456+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:02:24.457+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:02:24.457+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:02:24.477+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:02:24.475+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:02:24.478+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:02:24.492+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.040 seconds
+[2024-06-29T23:02:54.733+0000] {processor.py:161} INFO - Started process (PID=318) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:02:54.734+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:02:54.735+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:02:54.735+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:02:54.748+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:02:54.747+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:02:54.749+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:02:54.757+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.026 seconds
+[2024-06-29T23:03:25.031+0000] {processor.py:161} INFO - Started process (PID=374) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:03:25.032+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:03:25.034+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:03:25.033+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:03:25.052+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:03:25.050+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:03:25.053+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:03:25.063+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.034 seconds
+[2024-06-29T23:03:55.369+0000] {processor.py:161} INFO - Started process (PID=431) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:03:55.370+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:03:55.372+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:03:55.371+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:03:55.389+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:03:55.387+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:03:55.389+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:03:55.399+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.032 seconds
+[2024-06-29T23:04:25.443+0000] {processor.py:161} INFO - Started process (PID=487) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:04:25.445+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:04:25.446+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:04:25.446+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:04:25.459+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:04:25.458+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:04:25.459+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:04:25.467+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.025 seconds
+[2024-06-29T23:04:55.659+0000] {processor.py:161} INFO - Started process (PID=544) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:04:55.661+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:04:55.662+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:04:55.662+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:04:55.676+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:04:55.675+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:04:55.676+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:04:55.684+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.028 seconds
+[2024-06-29T23:05:25.824+0000] {processor.py:161} INFO - Started process (PID=600) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:05:25.825+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:05:25.826+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:05:25.826+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:05:25.840+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:05:25.839+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:05:25.840+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:05:25.849+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.028 seconds
+[2024-06-29T23:05:55.954+0000] {processor.py:161} INFO - Started process (PID=656) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:05:55.955+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:05:55.956+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:05:55.956+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:05:55.970+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:05:55.968+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:05:55.970+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:05:55.978+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.026 seconds
+[2024-06-29T23:06:26.127+0000] {processor.py:161} INFO - Started process (PID=712) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:06:26.132+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:06:26.133+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:06:26.133+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:06:26.148+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:06:26.146+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:06:26.148+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:06:26.156+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.032 seconds
+[2024-06-29T23:06:56.383+0000] {processor.py:161} INFO - Started process (PID=768) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:06:56.384+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:06:56.385+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:06:56.384+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:06:56.398+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:06:56.397+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:06:56.398+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:06:56.406+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.025 seconds
+[2024-06-29T23:07:26.428+0000] {processor.py:161} INFO - Started process (PID=824) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:07:26.429+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:07:26.431+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:07:26.430+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:07:26.444+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:07:26.443+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:07:26.445+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:07:26.453+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.027 seconds
+[2024-06-29T23:07:56.724+0000] {processor.py:161} INFO - Started process (PID=880) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:07:56.725+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:07:56.726+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:07:56.725+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:07:56.740+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:07:56.738+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:07:56.740+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:07:56.748+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.026 seconds
+[2024-06-29T23:08:26.787+0000] {processor.py:161} INFO - Started process (PID=936) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:08:26.789+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:08:26.790+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:08:26.790+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:08:26.807+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:08:26.806+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:08:26.807+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:08:26.817+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.033 seconds
+[2024-06-29T23:08:56.990+0000] {processor.py:161} INFO - Started process (PID=992) to work on /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:08:56.991+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-06-29T23:08:56.992+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:08:56.992+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:08:57.007+0000] {logging_mixin.py:188} INFO - [2024-06-29T23:08:57.006+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 87, in <module>
+    weather_etl()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dag.py", line 3955, in factory
+    f(**f_kwargs)
+  File "/opt/airflow/dags/weather_dag.py", line 30, in weather_etl
+    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/variable.py", line 143, in get
+    raise KeyError(f"Variable {key} does not exist")
+KeyError: 'Variable OPENWEATHERMAP_API_KEY does not exist'
+[2024-06-29T23:08:57.007+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2024-06-29T23:08:57.015+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.027 seconds
