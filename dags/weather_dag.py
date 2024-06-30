@@ -60,6 +60,11 @@ def weather_etl():
         rows = [(entry['name'], entry['date'], entry['temp'], entry['weather'], entry['wind'], entry['snow'], entry['rain']) for entry in data]
         sqlite_hook.insert_rows(table='weather',rows=rows, target_fields=target_fields)
 
+    @task
+    def createcsv(data):
+        with open("output.csv", mode='w', newline="") as file:
+            writer = csv.writer(file)
+            writer.writerows(data)
 
 
     # extracting data with task
