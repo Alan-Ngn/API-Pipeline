@@ -66,7 +66,6 @@ def weather_etl():
             writer = csv.writer(file)
             writer.writerows(data)
 
-
     # extracting data with task
     extracted_resorts=[]
     for resort in ski_resorts:
