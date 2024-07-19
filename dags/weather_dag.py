@@ -4,6 +4,7 @@ from airflow.models import Variable
 from airflow.providers.http.operators.http import HttpOperator
 from datetime import datetime, timedelta
 from airflow.providers.sqlite.hooks.sqlite import SqliteHook
+from airflow.providers.mongo.hooks.mongo import MongoHook
 
 import csv
 import json
