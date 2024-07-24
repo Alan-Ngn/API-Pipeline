@@ -4,7 +4,7 @@ from airflow.models import Variable
 from airflow.providers.http.operators.http import HttpOperator
 from datetime import datetime, timedelta
 from airflow.providers.sqlite.hooks.sqlite import SqliteHook
-from airflow.providers.mongo.hooks.mongo import MongoHook
+
 
 import csv
 import json
@@ -56,16 +56,20 @@ def weather_etl():
 
     @task
     def load(data):
-        sqlite_hook=SqliteHook(sqlite_conn_id='sqlite_dev_db')
+        # sqlite_hook=SqliteHook(sqlite_conn_id='sqlite_dev_db')
         target_fields = ['name', 'date', 'temp', 'weather', 'wind', 'snow','rain']
-        rows = [(entry['name'], entry['date'], entry['temp'], entry['weather'], entry['wind'], entry['snow'], entry['rain']) for entry in data]
-        sqlite_hook.insert_rows(table='weather',rows=rows, target_fields=target_fields)
-
-    @task
-    def createcsv(data):
+        rows = [[entry['name'], entry['date'], entry['temp'], entry['weather'], entry['wind'], entry['snow'], entry['rain']] for entry in data]
+        rows.insert(0, target_fields)
         with open("output.csv", mode='w', newline="") as file:
             writer = csv.writer(file)
-            writer.writerows(data)
+            writer.writerows(rows)
+        # sqlite_hook.insert_rows(table='weather',rows=rows, target_fields=target_fields)
+
+    # @task
+    # def createcsv(data):
+        # with open("output.csv", mode='w', newline="") as file:
+        #     writer = csv.writer(file)
+        #     writer.writerows(data)
 
     # extracting data with task
     extracted_resorts=[]
@@ -88,7 +92,7 @@ def weather_etl():
         extracted_resorts.append(extract(api_results=get_weather_results_task.output, mountain=resort['mountain']))
 
     transformed_data = transform(extracted_resorts)
-    create_csv = createcsv(transformed_data)
-    # load_data = load(transformed_data)
+    # create_csv = createcsv(transformed_data)
+    load_data = load(transformed_data)
 
 weather_etl()
