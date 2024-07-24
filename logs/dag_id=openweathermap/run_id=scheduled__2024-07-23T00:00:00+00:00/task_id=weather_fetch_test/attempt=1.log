@@ -1,0 +1,31 @@
+[2024-07-24T01:23:00.590+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: openweathermap.weather_fetch_test scheduled__2024-07-23T00:00:00+00:00 [queued]>
+[2024-07-24T01:23:00.602+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: openweathermap.weather_fetch_test scheduled__2024-07-23T00:00:00+00:00 [queued]>
+[2024-07-24T01:23:00.602+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-07-24T01:23:00.620+0000] {taskinstance.py:2217} INFO - Executing <Task(HttpOperator): weather_fetch_test> on 2024-07-23 00:00:00+00:00
+[2024-07-24T01:23:00.629+0000] {standard_task_runner.py:60} INFO - Started process 83 to run task
+[2024-07-24T01:23:00.631+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'openweathermap', 'weather_fetch_test', 'scheduled__2024-07-23T00:00:00+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/weather_dag.py', '--cfg-path', '/tmp/tmpg268m5kn']
+[2024-07-24T01:23:00.635+0000] {standard_task_runner.py:88} INFO - Job 20: Subtask weather_fetch_test
+[2024-07-24T01:23:00.690+0000] {task_command.py:423} INFO - Running <TaskInstance: openweathermap.weather_fetch_test scheduled__2024-07-23T00:00:00+00:00 [running]> on host e762bad972f8
+[2024-07-24T01:23:00.785+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='snowglobe' AIRFLOW_CTX_DAG_ID='openweathermap' AIRFLOW_CTX_TASK_ID='weather_fetch_test' AIRFLOW_CTX_EXECUTION_DATE='2024-07-23T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-23T00:00:00+00:00'
+[2024-07-24T01:23:00.786+0000] {http.py:169} INFO - Calling HTTP method
+[2024-07-24T01:23:00.805+0000] {taskinstance.py:2731} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/http/operators/http.py", line 166, in execute
+    return self.execute_sync(context=context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/http/operators/http.py", line 170, in execute_sync
+    response = self.hook.run(self.endpoint, self.data, self.headers, self.extra_options)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/http/operators/http.py", line 148, in hook
+    conn = BaseHook.get_connection(conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/hooks/base.py", line 82, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 514, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `openweathermap_api` isn't defined
+[2024-07-24T01:23:00.809+0000] {taskinstance.py:1149} INFO - Marking task as UP_FOR_RETRY. dag_id=openweathermap, task_id=weather_fetch_test, execution_date=20240723T000000, start_date=20240724T012300, end_date=20240724T012300
+[2024-07-24T01:23:00.821+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 20 for task weather_fetch_test (The conn_id `openweathermap_api` isn't defined; 83)
+[2024-07-24T01:23:00.843+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-07-24T01:23:00.884+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

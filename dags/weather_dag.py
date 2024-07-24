@@ -27,6 +27,11 @@ def weather_etl():
                         'lon':-157.858093,
                         'mountain': 'Honolulu'
                     },
+                    {
+                        'lat': 21.315603,
+                        'lon':-157.858093,
+                        'mountain': 'test'
+                    },
                 ]
 
     OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
