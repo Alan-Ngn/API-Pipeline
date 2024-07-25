@@ -6914,3 +6914,24 @@
 [2024-07-24T21:00:44.297+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:00:44.297+0000] {dag.py:3047} INFO - Sync 1 DAGs
 [2024-07-24T21:00:44.314+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:00:44.314+0000] {dag.py:3834} INFO - Setting next_dagrun for example_setup_teardown to 2024-07-23 00:00:00+00:00, run_after=2024-07-24 00:00:00+00:00
 [2024-07-24T21:00:44.329+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py took 0.059 seconds
+[2024-07-24T21:01:14.405+0000] {processor.py:161} INFO - Started process (PID=14647) to work on /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py
+[2024-07-24T21:01:14.406+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py for tasks to queue
+[2024-07-24T21:01:14.407+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:14.407+0000] {dagbag.py:540} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py
+[2024-07-24T21:01:14.412+0000] {processor.py:840} INFO - DAG(s) 'example_setup_teardown' retrieved from /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py
+[2024-07-24T21:01:14.429+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:14.428+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-07-24T21:01:14.448+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:14.448+0000] {dag.py:3834} INFO - Setting next_dagrun for example_setup_teardown to 2024-07-23 00:00:00+00:00, run_after=2024-07-24 00:00:00+00:00
+[2024-07-24T21:01:14.466+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py took 0.063 seconds
+[2024-07-24T21:01:44.595+0000] {processor.py:161} INFO - Started process (PID=14703) to work on /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py
+[2024-07-24T21:01:44.596+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py for tasks to queue
+[2024-07-24T21:01:44.597+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:44.597+0000] {dagbag.py:540} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py
+[2024-07-24T21:01:44.603+0000] {processor.py:840} INFO - DAG(s) 'example_setup_teardown' retrieved from /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py
+[2024-07-24T21:01:44.622+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:44.622+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-07-24T21:01:44.643+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:44.643+0000] {dag.py:3834} INFO - Setting next_dagrun for example_setup_teardown to 2024-07-23 00:00:00+00:00, run_after=2024-07-24 00:00:00+00:00
+[2024-07-24T21:01:44.661+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py took 0.068 seconds
+[2024-07-24T21:02:14.865+0000] {processor.py:161} INFO - Started process (PID=14759) to work on /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py
+[2024-07-24T21:02:14.866+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py for tasks to queue
+[2024-07-24T21:02:14.867+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:02:14.867+0000] {dagbag.py:540} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py
+[2024-07-24T21:02:14.874+0000] {processor.py:840} INFO - DAG(s) 'example_setup_teardown' retrieved from /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py
+[2024-07-24T21:02:14.896+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:02:14.896+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-07-24T21:02:14.918+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:02:14.918+0000] {dag.py:3834} INFO - Setting next_dagrun for example_setup_teardown to 2024-07-23 00:00:00+00:00, run_after=2024-07-24 00:00:00+00:00
+[2024-07-24T21:02:14.942+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.8/site-packages/airflow/example_dags/example_setup_teardown.py took 0.080 seconds

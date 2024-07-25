@@ -7054,3 +7054,24 @@ airflow.exceptions.DuplicateTaskIdFound: Task id 'weather_fetch_honolulu' has al
 [2024-07-24T21:00:36.469+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:00:36.469+0000] {dag.py:3047} INFO - Sync 1 DAGs
 [2024-07-24T21:00:36.485+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:00:36.484+0000] {dag.py:3834} INFO - Setting next_dagrun for openweathermap to 2024-07-24 00:00:00+00:00, run_after=2024-07-25 00:00:00+00:00
 [2024-07-24T21:00:36.499+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.059 seconds
+[2024-07-24T21:01:06.514+0000] {processor.py:161} INFO - Started process (PID=14626) to work on /opt/airflow/dags/weather_dag.py
+[2024-07-24T21:01:06.515+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-07-24T21:01:06.516+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:06.516+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-07-24T21:01:06.532+0000] {processor.py:840} INFO - DAG(s) 'openweathermap' retrieved from /opt/airflow/dags/weather_dag.py
+[2024-07-24T21:01:06.541+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:06.541+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-07-24T21:01:06.557+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:06.557+0000] {dag.py:3834} INFO - Setting next_dagrun for openweathermap to 2024-07-24 00:00:00+00:00, run_after=2024-07-25 00:00:00+00:00
+[2024-07-24T21:01:06.572+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.060 seconds
+[2024-07-24T21:01:36.766+0000] {processor.py:161} INFO - Started process (PID=14682) to work on /opt/airflow/dags/weather_dag.py
+[2024-07-24T21:01:36.766+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-07-24T21:01:36.767+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:36.767+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-07-24T21:01:36.783+0000] {processor.py:840} INFO - DAG(s) 'openweathermap' retrieved from /opt/airflow/dags/weather_dag.py
+[2024-07-24T21:01:36.793+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:36.793+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-07-24T21:01:36.809+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:01:36.809+0000] {dag.py:3834} INFO - Setting next_dagrun for openweathermap to 2024-07-24 00:00:00+00:00, run_after=2024-07-25 00:00:00+00:00
+[2024-07-24T21:01:36.822+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.059 seconds
+[2024-07-24T21:02:06.843+0000] {processor.py:161} INFO - Started process (PID=14738) to work on /opt/airflow/dags/weather_dag.py
+[2024-07-24T21:02:06.843+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-07-24T21:02:06.844+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:02:06.844+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-07-24T21:02:06.860+0000] {processor.py:840} INFO - DAG(s) 'openweathermap' retrieved from /opt/airflow/dags/weather_dag.py
+[2024-07-24T21:02:06.869+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:02:06.869+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-07-24T21:02:06.885+0000] {logging_mixin.py:188} INFO - [2024-07-24T21:02:06.885+0000] {dag.py:3834} INFO - Setting next_dagrun for openweathermap to 2024-07-24 00:00:00+00:00, run_after=2024-07-25 00:00:00+00:00
+[2024-07-24T21:02:06.899+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.058 seconds
