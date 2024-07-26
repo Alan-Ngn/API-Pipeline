@@ -71,7 +71,7 @@ def weather_etl():
             writer = csv.writer(file)
             writer.writerows(rows)
         # sqlite_hook.insert_rows(table='weather',rows=rows, target_fields=target_fields)
-        file_path = '/output.csv'
+        file_path = '/opt/airflow/output.csv'
         return file_path
 
     @task
@@ -81,7 +81,7 @@ def weather_etl():
         to='alan.nguyen.engineer@gmail.com',
         subject='OpenWeatherMap Data',
         html_content='<p>Find attached the latest weather data.</p>',
-        # files=[file_path],
+        files=[file_path],
         )
         email.execute(context=None)
     # @task
