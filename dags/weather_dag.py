@@ -23,31 +23,41 @@ default_args = {
     catchup=False
 )
 def weather_etl():
-    ski_resorts=[
+    destinations=[
                     {
                         'lat': 21.315603,
                         'lon':-157.858093,
-                        'mountain': 'Honolulu'
+                        'location': 'Honolulu'
                     },
                     {
-                        'lat': 21.315603,
-                        'lon':-157.858093,
-                        'mountain': 'test'
+                        'lat': 21.572399200615358,
+                        'lon':-158.121782776238,
+                        'location': 'Waialua'
+                    },
+                    {
+                        'lat': 21.572399200615358,
+                        'lon':-158.121782776238,
+                        'location': 'Kailua'
+                    },
+                    {
+                        'lat': 21.441989802394755,
+                        'lon':-158.18534745569784,
+                        'location': 'Waianae'
                     },
                 ]
 
     OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
 
     @task
-    def extract(api_results, mountain):
-        return [mountain]+json.loads(api_results)['list']
+    def extract(api_results, location):
+        return [location]+json.loads(api_results)['list']
 
     #transforming data
     @task
-    def transform(extracted_ski_resorts):
+    def transform(extracted_destinations):
         result = [
             {
-                'name': mountain,
+                'name': location,
                 'date': datetime.utcfromtimestamp(entry['dt']).strftime('%Y-%m-%d %H:%M:%S'),
                 'temp': entry['main']['temp'],
                 'weather': entry['weather'][0]['description'],
@@ -56,7 +66,7 @@ def weather_etl():
                 'rain': entry['rain']['3h'] if 'rain' in entry else None,
 
             }
-            for mountain, *entries in extracted_ski_resorts
+            for location, *entries in extracted_destinations
             for entry in entries
         ]
         return result
@@ -91,26 +101,26 @@ def weather_etl():
         #     writer.writerows(data)
 
     # extracting data with task
-    extracted_resorts=[]
-    for resort in ski_resorts:
-        resort_task_id = resort['mountain'].replace(' ', '_').lower()
+    extracted_destinations=[]
+    for destination in destinations:
+        destination_task_id = destination['location'].replace(' ', '_').lower()
         get_weather_results_task = HttpOperator(
-            task_id =f'weather_fetch_{resort_task_id}',
+            task_id =f'weather_fetch_{destination_task_id}',
             method = 'GET',
             http_conn_id='openweathermap_api',
             endpoint=f'/data/2.5/forecast',
             headers={"Content-Type": "application/json"},
             data={
-                'lat':resort['lat'],
-                'lon':resort['lon'],
+                'lat':destination['lat'],
+                'lon':destination['lon'],
                 'appid':OPENWEATHERMAP_API_KEY,
                 'units':'metric'
             },
             do_xcom_push=True,
         )
-        extracted_resorts.append(extract(api_results=get_weather_results_task.output, mountain=resort['mountain']))
+        extracted_destinations.append(extract(api_results=get_weather_results_task.output, location=destination['location']))
 
-    transformed_data = transform(extracted_resorts)
+    transformed_data = transform(extracted_destinations)
     # create_csv = createcsv(transformed_data)
     load_data = load(transformed_data)
     send_email(load_data)
