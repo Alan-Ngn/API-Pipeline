@@ -1,0 +1,13 @@
+[2024-07-26T01:03:08.558+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: openweathermap.load scheduled__2024-07-25T00:00:00+00:00 [queued]>
+[2024-07-26T01:03:08.564+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: openweathermap.load scheduled__2024-07-25T00:00:00+00:00 [queued]>
+[2024-07-26T01:03:08.564+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-07-26T01:03:08.575+0000] {taskinstance.py:2217} INFO - Executing <Task(_PythonDecoratedOperator): load> on 2024-07-25 00:00:00+00:00
+[2024-07-26T01:03:08.580+0000] {standard_task_runner.py:60} INFO - Started process 77 to run task
+[2024-07-26T01:03:08.582+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'openweathermap', 'load', 'scheduled__2024-07-25T00:00:00+00:00', '--job-id', '99', '--raw', '--subdir', 'DAGS_FOLDER/weather_dag.py', '--cfg-path', '/tmp/tmp4usu7qne']
+[2024-07-26T01:03:08.584+0000] {standard_task_runner.py:88} INFO - Job 99: Subtask load
+[2024-07-26T01:03:08.623+0000] {task_command.py:423} INFO - Running <TaskInstance: openweathermap.load scheduled__2024-07-25T00:00:00+00:00 [running]> on host b1f36d2a5f45
+[2024-07-26T01:03:08.715+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='snowglobe' AIRFLOW_CTX_DAG_ID='openweathermap' AIRFLOW_CTX_TASK_ID='load' AIRFLOW_CTX_EXECUTION_DATE='2024-07-25T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-25T00:00:00+00:00'
+[2024-07-26T01:03:08.717+0000] {python.py:202} INFO - Done. Returned value was: /output.csv
+[2024-07-26T01:03:08.740+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=openweathermap, task_id=load, execution_date=20240725T000000, start_date=20240726T010308, end_date=20240726T010308
+[2024-07-26T01:03:08.795+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-07-26T01:03:08.813+0000] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check

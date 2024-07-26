@@ -1,0 +1,13 @@
+[2024-07-25T22:22:11.235+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: openweathermap.email scheduled__2024-07-24T00:00:00+00:00 [queued]>
+[2024-07-25T22:22:11.241+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: openweathermap.email scheduled__2024-07-24T00:00:00+00:00 [queued]>
+[2024-07-25T22:22:11.241+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-07-25T22:22:11.251+0000] {taskinstance.py:2217} INFO - Executing <Task(_PythonDecoratedOperator): email> on 2024-07-24 00:00:00+00:00
+[2024-07-25T22:22:11.256+0000] {standard_task_runner.py:60} INFO - Started process 104 to run task
+[2024-07-25T22:22:11.257+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'openweathermap', 'email', 'scheduled__2024-07-24T00:00:00+00:00', '--job-id', '57', '--raw', '--subdir', 'DAGS_FOLDER/weather_dag.py', '--cfg-path', '/tmp/tmpcgkiqjl9']
+[2024-07-25T22:22:11.259+0000] {standard_task_runner.py:88} INFO - Job 57: Subtask email
+[2024-07-25T22:22:11.294+0000] {task_command.py:423} INFO - Running <TaskInstance: openweathermap.email scheduled__2024-07-24T00:00:00+00:00 [running]> on host 528d4c21eff6
+[2024-07-25T22:22:11.358+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='snowglobe' AIRFLOW_CTX_DAG_ID='openweathermap' AIRFLOW_CTX_TASK_ID='email' AIRFLOW_CTX_EXECUTION_DATE='2024-07-24T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-24T00:00:00+00:00'
+[2024-07-25T22:22:11.360+0000] {python.py:202} INFO - Done. Returned value was: None
+[2024-07-25T22:22:11.366+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=openweathermap, task_id=email, execution_date=20240724T000000, start_date=20240725T222211, end_date=20240725T222211
+[2024-07-25T22:22:11.390+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-07-25T22:22:11.403+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

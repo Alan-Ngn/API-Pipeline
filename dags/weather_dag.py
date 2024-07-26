@@ -4,7 +4,9 @@ from airflow.models import Variable
 from airflow.providers.http.operators.http import HttpOperator
 from datetime import datetime, timedelta
 from airflow.providers.sqlite.hooks.sqlite import SqliteHook
-
+# from airflow.providers.smtp.operators.email import EmailOperator
+# from airflow.providers.smtp.operators.smtp import EmailOperator
+from airflow.operators.email import EmailOperator
 
 import csv
 import json
@@ -69,7 +71,19 @@ def weather_etl():
             writer = csv.writer(file)
             writer.writerows(rows)
         # sqlite_hook.insert_rows(table='weather',rows=rows, target_fields=target_fields)
+        file_path = '/output.csv'
+        return file_path
 
+    @task
+    def send_email(file_path):
+        email = EmailOperator(
+        task_id='send_email',
+        to='alan.nguyen.engineer@gmail.com',
+        subject='OpenWeatherMap Data',
+        html_content='<p>Find attached the latest weather data.</p>',
+        # files=[file_path],
+        )
+        email.execute(context=None)
     # @task
     # def createcsv(data):
         # with open("output.csv", mode='w', newline="") as file:
@@ -99,5 +113,5 @@ def weather_etl():
     transformed_data = transform(extracted_resorts)
     # create_csv = createcsv(transformed_data)
     load_data = load(transformed_data)
-
+    send_email(load_data)
 weather_etl()
