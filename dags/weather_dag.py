@@ -35,8 +35,8 @@ def weather_etl():
                         'location': 'Waialua'
                     },
                     {
-                        'lat': 21.572399200615358,
-                        'lon':-158.121782776238,
+                        'lat': 21.394498800858724,
+                        'lon':-157.74353491625777,
                         'location': 'Kailua'
                     },
                     {
@@ -49,25 +49,27 @@ def weather_etl():
     OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
 
     @task
-    def extract(api_results, location):
-        return [location]+json.loads(api_results)['list']
+    def extract(api_results):
+        return json.loads(api_results)
 
     #transforming data
     @task
     def transform(extracted_destinations):
+        print(extracted_destinations)
         result = [
             {
-                'name': location,
+                'name': entry['name'],
                 'date': datetime.utcfromtimestamp(entry['dt']).strftime('%Y-%m-%d %H:%M:%S'),
-                'temp': entry['main']['temp'],
                 'weather': entry['weather'][0]['description'],
+                'temp': entry['main']['temp'],
+                'humidity': entry['main']['humidity'],
                 'wind': entry['wind']['speed'] if 'wind' in entry else None,
                 'snow': entry['snow']['3h'] if 'snow' in entry else None,
                 'rain': entry['rain']['3h'] if 'rain' in entry else None,
 
             }
-            for location, *entries in extracted_destinations
-            for entry in entries
+            for entry in extracted_destinations
+            # for entry in entries
         ]
         return result
 
@@ -75,7 +77,7 @@ def weather_etl():
     def load(data):
         # sqlite_hook=SqliteHook(sqlite_conn_id='sqlite_dev_db')
         target_fields = ['name', 'date', 'temp', 'weather', 'wind', 'snow','rain']
-        rows = [[entry['name'], entry['date'], entry['temp'], entry['weather'], entry['wind'], entry['snow'], entry['rain']] for entry in data]
+        rows = [[entry['name'], entry['date'], entry['weather'], entry['temp'], entry['humidity'], entry['wind'], entry['snow'], entry['rain']] for entry in data]
         rows.insert(0, target_fields)
         with open("output.csv", mode='w', newline="") as file:
             writer = csv.writer(file)
@@ -108,7 +110,7 @@ def weather_etl():
             task_id =f'weather_fetch_{destination_task_id}',
             method = 'GET',
             http_conn_id='openweathermap_api',
-            endpoint=f'/data/2.5/forecast',
+            endpoint=f'/data/2.5/weather',
             headers={"Content-Type": "application/json"},
             data={
                 'lat':destination['lat'],
@@ -118,7 +120,7 @@ def weather_etl():
             },
             do_xcom_push=True,
         )
-        extracted_destinations.append(extract(api_results=get_weather_results_task.output, location=destination['location']))
+        extracted_destinations.append(extract(api_results=get_weather_results_task.output))
 
     transformed_data = transform(extracted_destinations)
     # create_csv = createcsv(transformed_data)
