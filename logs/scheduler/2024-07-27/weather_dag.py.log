@@ -1,0 +1,28 @@
+[2024-07-27T00:00:14.784+0000] {processor.py:161} INFO - Started process (PID=13698) to work on /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:00:14.785+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-07-27T00:00:14.786+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:00:14.786+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:00:14.803+0000] {processor.py:840} INFO - DAG(s) 'openweathermap' retrieved from /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:00:14.815+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:00:14.815+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-07-27T00:00:14.831+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:00:14.831+0000] {dag.py:3834} INFO - Setting next_dagrun for openweathermap to 2024-07-27 00:00:00+00:00, run_after=2024-07-28 00:00:00+00:00
+[2024-07-27T00:00:14.845+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.063 seconds
+[2024-07-27T00:00:44.913+0000] {processor.py:161} INFO - Started process (PID=13754) to work on /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:00:44.914+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-07-27T00:00:44.915+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:00:44.915+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:00:44.932+0000] {processor.py:840} INFO - DAG(s) 'openweathermap' retrieved from /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:00:44.943+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:00:44.943+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-07-27T00:00:44.958+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:00:44.958+0000] {dag.py:3834} INFO - Setting next_dagrun for openweathermap to 2024-07-27 00:00:00+00:00, run_after=2024-07-28 00:00:00+00:00
+[2024-07-27T00:00:44.972+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.061 seconds
+[2024-07-27T00:01:15.017+0000] {processor.py:161} INFO - Started process (PID=13808) to work on /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:01:15.018+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-07-27T00:01:15.019+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:01:15.019+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:01:15.037+0000] {processor.py:840} INFO - DAG(s) 'openweathermap' retrieved from /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:01:15.048+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:01:15.048+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-07-27T00:01:15.065+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:01:15.064+0000] {dag.py:3834} INFO - Setting next_dagrun for openweathermap to 2024-07-27 00:00:00+00:00, run_after=2024-07-28 00:00:00+00:00
+[2024-07-27T00:01:15.079+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.065 seconds
+[2024-07-27T00:01:45.157+0000] {processor.py:161} INFO - Started process (PID=13864) to work on /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:01:45.158+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2024-07-27T00:01:45.159+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:01:45.159+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:01:45.177+0000] {processor.py:840} INFO - DAG(s) 'openweathermap' retrieved from /opt/airflow/dags/weather_dag.py
+[2024-07-27T00:01:45.189+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:01:45.188+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-07-27T00:01:45.205+0000] {logging_mixin.py:188} INFO - [2024-07-27T00:01:45.205+0000] {dag.py:3834} INFO - Setting next_dagrun for openweathermap to 2024-07-27 00:00:00+00:00, run_after=2024-07-28 00:00:00+00:00
+[2024-07-27T00:01:45.218+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.063 seconds
