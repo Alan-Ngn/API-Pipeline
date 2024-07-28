@@ -58,15 +58,15 @@ def weather_etl():
         result = [
             {
                 'name': entry['name'],
-                'date': datetime.utcfromtimestamp(entry['dt']).strftime('%Y-%m-%d %H:%M:%S'),
+                'date': (datetime.fromtimestamp(entry['dt'])- timedelta(hours=10)).strftime('%Y-%m-%d %I:%M:%S %p'),
                 'weather': entry['weather'][0]['description'],
                 'temp': entry['main']['temp'],
                 'humidity': entry['main']['humidity'],
                 'wind': entry['wind']['speed'] if 'wind' in entry else None,
                 'snow': entry['snow']['3h'] if 'snow' in entry else None,
                 'rain': entry['rain']['3h'] if 'rain' in entry else None,
-                'sunrise': (datetime.fromtimestamp(entry['sys']['sunrise'])- timedelta(hours=10)).strftime('%Y-%m-%d %H:%M:%S'),
-                'sunset': (datetime.fromtimestamp(entry['sys']['sunset'])- timedelta(hours=10)).strftime('%Y-%m-%d %H:%M:%S')
+                'sunrise': (datetime.fromtimestamp(entry['sys']['sunrise'])- timedelta(hours=10)).strftime('%Y-%m-%d %I:%M:%S %p'),
+                'sunset': (datetime.fromtimestamp(entry['sys']['sunset'])- timedelta(hours=10)).strftime('%Y-%m-%d %I:%M:%S %p')
             }
             for entry in extracted_destinations
             # for entry in entries
@@ -87,11 +87,12 @@ def weather_etl():
         return file_path
 
     @task
-    def send_email(file_path):
+    def send_email(file_path, **context):
+        date  = context['execution_date']
         email = EmailOperator(
         task_id='send_email',
         to='alan.nguyen.engineer@gmail.com',
-        subject='OpenWeatherMap Data',
+        subject=f'{date} OpenWeatherMap Data',
         html_content='<p>Find attached the latest weather data.</p>',
         files=[file_path],
         )
