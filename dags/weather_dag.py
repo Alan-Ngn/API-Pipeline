@@ -55,7 +55,6 @@ def weather_etl():
     #transforming data
     @task
     def transform(extracted_destinations):
-        print(extracted_destinations)
         result = [
             {
                 'name': entry['name'],
@@ -66,7 +65,8 @@ def weather_etl():
                 'wind': entry['wind']['speed'] if 'wind' in entry else None,
                 'snow': entry['snow']['3h'] if 'snow' in entry else None,
                 'rain': entry['rain']['3h'] if 'rain' in entry else None,
-
+                'sunrise': (datetime.fromtimestamp(entry['sys']['sunrise'])- timedelta(hours=10)).strftime('%Y-%m-%d %H:%M:%S'),
+                'sunset': (datetime.fromtimestamp(entry['sys']['sunset'])- timedelta(hours=10)).strftime('%Y-%m-%d %H:%M:%S')
             }
             for entry in extracted_destinations
             # for entry in entries
@@ -76,8 +76,8 @@ def weather_etl():
     @task
     def load(data):
         # sqlite_hook=SqliteHook(sqlite_conn_id='sqlite_dev_db')
-        target_fields = ['name', 'date', 'temp', 'weather', 'wind', 'snow','rain']
-        rows = [[entry['name'], entry['date'], entry['weather'], entry['temp'], entry['humidity'], entry['wind'], entry['snow'], entry['rain']] for entry in data]
+        target_fields = ['name', 'date', 'weather', 'temp', 'humidity', 'wind', 'snow', 'rain', 'sunrise', 'sunset']
+        rows = [[entry['name'], entry['date'], entry['weather'], entry['temp'], entry['humidity'], entry['wind'], entry['snow'], entry['rain'], entry['sunrise'], entry['sunset']] for entry in data]
         rows.insert(0, target_fields)
         with open("output.csv", mode='w', newline="") as file:
             writer = csv.writer(file)
