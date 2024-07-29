@@ -3,9 +3,6 @@ from airflow.decorators import dag, task
 from airflow.models import Variable
 from airflow.providers.http.operators.http import HttpOperator
 from datetime import datetime, timedelta
-from airflow.providers.sqlite.hooks.sqlite import SqliteHook
-# from airflow.providers.smtp.operators.email import EmailOperator
-# from airflow.providers.smtp.operators.smtp import EmailOperator
 from airflow.operators.email import EmailOperator
 
 import csv
@@ -75,14 +72,12 @@ def weather_etl():
 
     @task
     def load(data):
-        # sqlite_hook=SqliteHook(sqlite_conn_id='sqlite_dev_db')
         target_fields = ['name', 'date', 'weather', 'temp', 'humidity', 'wind', 'snow', 'rain', 'sunrise', 'sunset']
         rows = [[entry['name'], entry['date'], entry['weather'], entry['temp'], entry['humidity'], entry['wind'], entry['snow'], entry['rain'], entry['sunrise'], entry['sunset']] for entry in data]
         rows.insert(0, target_fields)
         with open("output.csv", mode='w', newline="") as file:
             writer = csv.writer(file)
             writer.writerows(rows)
-        # sqlite_hook.insert_rows(table='weather',rows=rows, target_fields=target_fields)
         file_path = '/opt/airflow/output.csv'
         return file_path
 
@@ -97,11 +92,6 @@ def weather_etl():
         files=[file_path],
         )
         email.execute(context=None)
-    # @task
-    # def createcsv(data):
-        # with open("output.csv", mode='w', newline="") as file:
-        #     writer = csv.writer(file)
-        #     writer.writerows(data)
 
     # extracting data with task
     extracted_destinations=[]
@@ -124,7 +114,6 @@ def weather_etl():
         extracted_destinations.append(extract(api_results=get_weather_results_task.output))
 
     transformed_data = transform(extracted_destinations)
-    # create_csv = createcsv(transformed_data)
     load_data = load(transformed_data)
     send_email(load_data)
 weather_etl()
