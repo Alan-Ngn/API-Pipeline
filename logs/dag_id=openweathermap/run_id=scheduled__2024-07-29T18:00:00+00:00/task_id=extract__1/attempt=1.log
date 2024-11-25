@@ -1,0 +1,13 @@
+[2024-07-29T22:19:53.762+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: openweathermap.extract__1 scheduled__2024-07-29T18:00:00+00:00 [queued]>
+[2024-07-29T22:19:53.771+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: openweathermap.extract__1 scheduled__2024-07-29T18:00:00+00:00 [queued]>
+[2024-07-29T22:19:53.771+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-07-29T22:19:53.785+0000] {taskinstance.py:2217} INFO - Executing <Task(_PythonDecoratedOperator): extract__1> on 2024-07-29 18:00:00+00:00
+[2024-07-29T22:19:53.791+0000] {standard_task_runner.py:60} INFO - Started process 81 to run task
+[2024-07-29T22:19:53.793+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'openweathermap', 'extract__1', 'scheduled__2024-07-29T18:00:00+00:00', '--job-id', '285', '--raw', '--subdir', 'DAGS_FOLDER/weather_dag.py', '--cfg-path', '/tmp/tmpmsb71t4x']
+[2024-07-29T22:19:53.795+0000] {standard_task_runner.py:88} INFO - Job 285: Subtask extract__1
+[2024-07-29T22:19:53.831+0000] {task_command.py:423} INFO - Running <TaskInstance: openweathermap.extract__1 scheduled__2024-07-29T18:00:00+00:00 [running]> on host f8a27f2278a9
+[2024-07-29T22:19:53.913+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='snowglobe' AIRFLOW_CTX_DAG_ID='openweathermap' AIRFLOW_CTX_TASK_ID='extract__1' AIRFLOW_CTX_EXECUTION_DATE='2024-07-29T18:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-29T18:00:00+00:00'
+[2024-07-29T22:19:53.914+0000] {python.py:202} INFO - Done. Returned value was: {'coord': {'lon': -158.1218, 'lat': 21.5724}, 'weather': [{'id': 803, 'main': 'Clouds', 'description': 'broken clouds', 'icon': '04d'}], 'base': 'stations', 'main': {'temp': 29.03, 'feels_like': 30.21, 'temp_min': 27.75, 'temp_max': 29.94, 'pressure': 1019, 'humidity': 54, 'sea_level': 1019, 'grnd_level': 1018}, 'visibility': 10000, 'wind': {'speed': 4.12, 'deg': 110, 'gust': 8.23}, 'clouds': {'all': 75}, 'dt': 1722291590, 'sys': {'type': 1, 'id': 7866, 'country': 'US', 'sunrise': 1722269073, 'sunset': 1722316387}, 'timezone': -36000, 'id': 5854171, 'name': 'Waialua', 'cod': 200}
+[2024-07-29T22:19:53.932+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=openweathermap, task_id=extract__1, execution_date=20240729T180000, start_date=20240729T221953, end_date=20240729T221953
+[2024-07-29T22:19:53.965+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-07-29T22:19:54.000+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check
