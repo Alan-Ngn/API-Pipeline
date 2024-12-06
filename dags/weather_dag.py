@@ -44,6 +44,8 @@ def weather_etl():
                 ]
 
     OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
+    SMTP_USER = Variable.get("SMTP_USER")
+    SMTP_PASSWORD = Variable.get("SMTP_PASSWORD")
 
     @task
     def extract(api_results):
