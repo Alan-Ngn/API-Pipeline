@@ -7,6 +7,14 @@ from airflow.operators.email import EmailOperator
 
 import csv
 import json
+
+def get_secret(secret_name, region_name="us-west-1"):
+    session = boto3.session.Session()
+    client = session.client(service_name="secretsmanager", region_name=region_name)
+    response = client.get_secret_value(SecretId=secret_name)
+    secret = json.loads(response["SecretString"])
+    return secret
+
 default_args = {
     'owner':'snowglobe',
     'start_date': datetime(2023, 2, 14, 3, 0, 0),  # datetime(year, month, day, hour, minute, second)
@@ -42,10 +50,10 @@ def weather_etl():
                         'location': 'Waianae'
                     },
                 ]
-
-    OPENWEATHERMAP_API_KEY = Variable.get("OPENWEATHERMAP_API_KEY")
-    SMTP_USER = Variable.get("SMTP_USER")
-    SMTP_PASSWORD = Variable.get("SMTP_PASSWORD")
+    secrets = get_secret("airflow/openweatherapi/email") 
+    OPENWEATHERMAP_API_KEY = secrets("OPENWEATHERMAP_API_KEY")
+    SMTP_USER = secrets("SMTP_USER")
+    SMTP_PASSWORD = secrets("SMTP_PASSWORD")
 
     @task
     def extract(api_results):
