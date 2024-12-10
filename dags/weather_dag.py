@@ -51,9 +51,9 @@ def weather_etl():
                     },
                 ]
     secrets = get_secret("airflow/openweatherapi/email") 
-    OPENWEATHERMAP_API_KEY = secrets("OPENWEATHERMAP_API_KEY")
-    SMTP_USER = secrets("SMTP_USER")
-    SMTP_PASSWORD = secrets("SMTP_PASSWORD")
+    OPENWEATHERMAP_API_KEY = secrets["OPENWEATHERMAP_API_KEY"]
+    SMTP_USER = secrets["SMTP_USER"]
+    SMTP_PASSWORD = secrets["SMTP_PASSWORD"]
 
     @task
     def extract(api_results):
