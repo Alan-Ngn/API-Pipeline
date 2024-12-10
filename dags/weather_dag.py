@@ -7,7 +7,7 @@ from airflow.operators.email import EmailOperator
 
 import csv
 import json
-
+import boto3
 def get_secret(secret_name, region_name="us-west-1"):
     session = boto3.session.Session()
     client = session.client(service_name="secretsmanager", region_name=region_name)
