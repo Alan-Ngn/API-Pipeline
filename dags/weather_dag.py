@@ -8,6 +8,8 @@ from airflow.operators.email import EmailOperator
 import csv
 import json
 import boto3
+import io
+
 def get_secret(secret_name, region_name="us-west-1"):
     session = boto3.session.Session()
     client = session.client(service_name="secretsmanager", region_name=region_name)
@@ -52,8 +54,8 @@ def weather_etl():
                 ]
     secrets = get_secret("airflow/openweatherapi/email") 
     OPENWEATHERMAP_API_KEY = secrets["OPENWEATHERMAP_API_KEY"]
-    SMTP_USER = secrets["SMTP_USER"]
-    SMTP_PASSWORD = secrets["SMTP_PASSWORD"]
+    # SMTP_USER = secrets["SMTP_USER"]
+    # SMTP_PASSWORD = secrets["SMTP_PASSWORD"]
 
     @task
     def extract(api_results):
@@ -81,15 +83,32 @@ def weather_etl():
         return result
 
     @task
-    def load(data):
+    def load_s3(data):
+        s3 = boto3.client('s3')
+        bucket_name = 'alan-learning-etl-project'
+        s3_key = 'output/output.csv'
+
         target_fields = ['name', 'date', 'weather', 'temp', 'humidity', 'wind', 'snow', 'rain', 'sunrise', 'sunset']
         rows = [[entry['name'], entry['date'], entry['weather'], entry['temp'], entry['humidity'], entry['wind'], entry['snow'], entry['rain'], entry['sunrise'], entry['sunset']] for entry in data]
         rows.insert(0, target_fields)
-        with open("output.csv", mode='w', newline="") as file:
-            writer = csv.writer(file)
-            writer.writerows(rows)
-        file_path = '/opt/airflow/output.csv'
-        return file_path
+        
+        csv_buffer = io.StringIO()
+        writer = csv.writer(csv_buffer)
+        writer.writerows(rows)
+
+        file = csv_buffer.getvalue()
+
+        try:
+            s3.put_object(
+                Bucket=bucket_name,
+                Key=s3_key,
+                Body=file
+            )
+            return f"s3://{bucket_name}/{s3_key}"
+        except Exception as e:
+            raise Exception(f"Failed to upload file to S3: {str(e)}")
+        finally:
+            csv_buffer.close()
 
     @task
     def send_email(file_path, **context):
@@ -102,6 +121,42 @@ def weather_etl():
         files=[file_path],
         )
         email.execute(context=None)
+    
+    # @task
+    # def old_s3():
+    #     now = datetime.now()
+    #     current_year = now.strftime('%Y')
+    #     current_month = now.strftime('%m')
+    #     current_day = now.strftime('%d')
+    #     current_hour = now.strftime('%H')
+    #     folder_path = f'dataset/{current_year}/{current_month}/{current_day}'
+    #     file_path=f'raw/{current_year}/{current_month}/{current_day}/'
+    #     files = os.listdir(folder_path)
+    #     object_list = s3.list_objects_v2(
+    #         Bucket=bucket_name,
+    #         Prefix=file_path
+    #     )
+
+    #     for file in files:
+    #         if object_list['KeyCount']:
+    #             object = [object['Key'] for object in object_list['Contents']]
+    #             if f'{file_path}{file}' not in object:
+    #                 Filename = f'{folder_path}/{file}'
+    #                 Key = f'{file_path}{file}'
+    #                 try:
+    #                     s3.upload_file(
+    #                         Filename,
+    #                         Bucket,
+    #                         Key
+    #                     )
+    #                     print(f'{file} successfully uploaded')
+    #                 except botocore.exceptions.ClientError as e:
+    #                     print(f"Error uploading file: {e}")
+    #             else:
+    #                 print(f'{file} already uploaded')
+
+
+
 
     # extracting data with task
     extracted_destinations=[]
@@ -124,6 +179,6 @@ def weather_etl():
         extracted_destinations.append(extract(api_results=get_weather_results_task.output))
 
     transformed_data = transform(extracted_destinations)
-    load_data = load(transformed_data)
-    send_email(load_data)
+    load_s3(transformed_data)
+    # send_email(csv_data)
 weather_etl()
