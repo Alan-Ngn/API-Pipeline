@@ -3,7 +3,6 @@ from airflow.decorators import dag, task
 from airflow.models import Variable
 from airflow.providers.http.operators.http import HttpOperator
 from datetime import datetime, timedelta
-from airflow.operators.email import EmailOperator
 
 import csv
 import json
@@ -54,8 +53,6 @@ def weather_etl():
                 ]
     secrets = get_secret("airflow/openweatherapi/email") 
     OPENWEATHERMAP_API_KEY = secrets["OPENWEATHERMAP_API_KEY"]
-    # SMTP_USER = secrets["SMTP_USER"]
-    # SMTP_PASSWORD = secrets["SMTP_PASSWORD"]
 
     @task
     def extract(api_results):
@@ -110,54 +107,6 @@ def weather_etl():
         finally:
             csv_buffer.close()
 
-    @task
-    def send_email(file_path, **context):
-        date  = context['execution_date']
-        email = EmailOperator(
-        task_id='send_email',
-        to='alan.nguyen.engineer@gmail.com',
-        subject=f'{date} OpenWeatherMap Data',
-        html_content='<p>Find attached the latest weather data.</p>',
-        files=[file_path],
-        )
-        email.execute(context=None)
-    
-    # @task
-    # def old_s3():
-    #     now = datetime.now()
-    #     current_year = now.strftime('%Y')
-    #     current_month = now.strftime('%m')
-    #     current_day = now.strftime('%d')
-    #     current_hour = now.strftime('%H')
-    #     folder_path = f'dataset/{current_year}/{current_month}/{current_day}'
-    #     file_path=f'raw/{current_year}/{current_month}/{current_day}/'
-    #     files = os.listdir(folder_path)
-    #     object_list = s3.list_objects_v2(
-    #         Bucket=bucket_name,
-    #         Prefix=file_path
-    #     )
-
-    #     for file in files:
-    #         if object_list['KeyCount']:
-    #             object = [object['Key'] for object in object_list['Contents']]
-    #             if f'{file_path}{file}' not in object:
-    #                 Filename = f'{folder_path}/{file}'
-    #                 Key = f'{file_path}{file}'
-    #                 try:
-    #                     s3.upload_file(
-    #                         Filename,
-    #                         Bucket,
-    #                         Key
-    #                     )
-    #                     print(f'{file} successfully uploaded')
-    #                 except botocore.exceptions.ClientError as e:
-    #                     print(f"Error uploading file: {e}")
-    #             else:
-    #                 print(f'{file} already uploaded')
-
-
-
-
     # extracting data with task
     extracted_destinations=[]
     for destination in destinations:
@@ -180,5 +129,5 @@ def weather_etl():
 
     transformed_data = transform(extracted_destinations)
     load_s3(transformed_data)
-    # send_email(csv_data)
+
 weather_etl()

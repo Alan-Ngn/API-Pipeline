@@ -1,2 +1,6 @@
 .env
 test.py
+mwaa_setup.py
+s3_setup.py
+Policy
+
