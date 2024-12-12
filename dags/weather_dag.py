@@ -2,12 +2,14 @@
 from airflow.decorators import dag, task
 from airflow.models import Variable
 from airflow.providers.http.operators.http import HttpOperator
+from airflow.operators.email import EmailOperator
 from datetime import datetime, timedelta
 
 import csv
 import json
 import boto3
 import io
+
 
 def get_secret(secret_name, region_name="us-west-1"):
     session = boto3.session.Session()
@@ -16,11 +18,27 @@ def get_secret(secret_name, region_name="us-west-1"):
     secret = json.loads(response["SecretString"])
     return secret
 
+def task_failure_callback(context):
+    failed_task = context.get('task_instance')
+    subject = f"{context['execution_date']} Task {failed_task.task_id} Failed in DAG {context.get('dag').dag_id}"
+    html_content = f"""
+        <p>Log URL: <a href="{failed_task.log_url}">Click here to view logs</a></p>
+    """
+
+    email = EmailOperator(
+        task_id='email_failure_notification',
+        to='alan.nguyen.engineer@gmail.com',
+        subject=subject,
+        html_content=html_content,
+    )
+    return email
+
 default_args = {
-    'owner':'snowglobe',
+    'owner':'etl-owner',
     'start_date': datetime(2023, 2, 14, 3, 0, 0),  # datetime(year, month, day, hour, minute, second)
-    'retries': 1,
-    'retries_delay': timedelta(minutes=15)
+    'on_failure_callback':task_failure_callback
+    # 'retries': 1,
+    # 'retries_delay': timedelta(minutes=15)
 }
 @dag(
     dag_id='openweathermap',
@@ -53,6 +71,8 @@ def weather_etl():
                 ]
     secrets = get_secret("airflow/openweatherapi/email") 
     OPENWEATHERMAP_API_KEY = secrets["OPENWEATHERMAP_API_KEY"]
+    SMTP_USER = secrets["SMTP_USER"]
+    SMTP_PASSWORD = secrets["SMTP_PASSWORD"]
 
     @task
     def extract(api_results):
@@ -78,6 +98,10 @@ def weather_etl():
             # for entry in entries
         ]
         return result
+
+    @task
+    def test_task_fail():
+        raise ValueError("This task is designed to fail.")
 
     @task
     def load_s3(data):
@@ -128,6 +152,8 @@ def weather_etl():
         extracted_destinations.append(extract(api_results=get_weather_results_task.output))
 
     transformed_data = transform(extracted_destinations)
-    load_s3(transformed_data)
+    test_task_fail(transformed_data)
+    # load_s3(transformed_data)
+
 
 weather_etl()
