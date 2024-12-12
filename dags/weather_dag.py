@@ -69,7 +69,7 @@ def weather_etl():
                         'location': 'Waianae'
                     },
                 ]
-    secrets = get_secret("airflow/openweatherapi/email") 
+    secrets = get_secret("airflow/openweatherapi") 
     OPENWEATHERMAP_API_KEY = secrets["OPENWEATHERMAP_API_KEY"]
     SMTP_USER = secrets["SMTP_USER"]
     SMTP_PASSWORD = secrets["SMTP_PASSWORD"]
