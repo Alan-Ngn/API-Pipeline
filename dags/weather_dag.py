@@ -26,12 +26,11 @@ def task_failure_callback(context):
     """
 
     send_email(
-        # task_id='email_failure_notification',
         to='alan.nguyen.engineer@gmail.com',
         subject=subject,
         html_content=html_content,
     )
-    # email.execute(context=context)
+
 
 default_args = {
     'owner':'snowglobe',
@@ -73,7 +72,7 @@ def weather_etl():
     OPENWEATHERMAP_API_KEY = secrets["OPENWEATHERMAP_API_KEY"]
     smtp_user = secrets["SMTP_USER"]
     smtp_password = secrets["SMTP_PASSWORD"]
-    # smtp_password = secrets_manager.get_secret("SMTP_PASSWORD")
+
     os.environ["AIRFLOW__SMTP__SMTP_USER"] = smtp_user
     os.environ["AIRFLOW__SMTP__SMTP_PASSWORD"] = smtp_password
 
@@ -99,13 +98,12 @@ def weather_etl():
                 'sunset': (datetime.fromtimestamp(entry['sys']['sunset'])- timedelta(hours=10)).strftime('%Y-%m-%d %I:%M:%S %p')
             }
             for entry in extracted_destinations
-            # for entry in entries
         ]
         return result
 
-    @task
-    def test_task_fail(test):
-        raise ValueError("This task is designed to fail.")
+    # @task
+    # def test_task_fail(test):
+    #     raise ValueError("This task is designed to fail.")
 
     @task
     def load_s3(data):
@@ -156,7 +154,8 @@ def weather_etl():
         extracted_destinations.append(extract(api_results=get_weather_results_task.output))
 
     transformed_data = transform(extracted_destinations)
-    test_task_fail(transformed_data)
-    # load_s3(transformed_data)
+    load_s3(transformed_data)
+    # test_task_fail(transformed_data)
+
 
 weather_etl()
