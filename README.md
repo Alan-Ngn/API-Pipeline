@@ -11,8 +11,12 @@ Nothing needs to be installed locally
   - requirements/
     - requirements.txt
 ### Secret Manager Setup
-* Key : Value
-  * "OPENWEATHERMAP_API_KEY" : "YOUR_API_KEY"
+- Key : Value
+  - "OPENWEATHERMAP_API_KEY" : "YOUR_API_KEY"
+  - "SMTP_USER" : "YOUR_EMAIL"
+  - "SMTP_PASSWORD" : "YOUR_EMAIL_PASSWORD"
+    - go to your gmail account -> security -> 2FA -> add an app password for less secure apps
+
 ### MWAA Setup
 - Create a MWAA environment
   - Networking
@@ -24,13 +28,22 @@ Nothing needs to be installed locally
   - Configuration
     - secrets.backend : airflow.providers.amazon.aws.secrets.secrets_manager.SecretsManagerBackend
     - secrets.backend_kwargs : {"connections_prefix" : "airflow/connections", "variables_prefix" : "airflow/openweatherapi"}
-    - smtp.smtp_user :
-    - smtp.smtp_password :
       - "airflow/openweatherapi" should be your secret name
+    - smtp.smtp_host : smtp.gmail.com
+    - smtp.smtp_smtp_mail_from : "your_email"
+    - smtp.smtp_port : 597
+    - smtp.smtp_ssl : False
+    - smtp.smtp_starttls : True
+
   - Permissions - Execution Role
     - Allow AWS to create default permissions
       - Add s3 PUT Objects and Secret Manager List and Read
-  
+
+### MWAA Execution Policy
+- Tip: Make sure that the ARNs match the MWAA. Issues when copying old policies for new MWAA environments
+- Add s3 PUT Objects and Secret Manager List and Read
+- Add GetLogEvents abd DescribeLogStreams
+  - need to recheck these permissions
 ### Airflow UI
   - Admin -> Connections
     - Connection Id: openweathermap_api
