@@ -1,4 +1,3 @@
-
 from airflow.decorators import dag, task
 from airflow.models import Variable
 from airflow.providers.http.operators.http import HttpOperator
@@ -9,7 +8,6 @@ import csv
 import json
 import boto3
 import io
-
 
 def get_secret(secret_name, region_name="us-west-1"):
     session = boto3.session.Session()
@@ -31,10 +29,10 @@ def task_failure_callback(context):
         subject=subject,
         html_content=html_content,
     )
-    return email
+    email.execute(context=context)
 
 default_args = {
-    'owner':'etl-owner',
+    'owner':'snowglobe',
     'start_date': datetime(2023, 2, 14, 3, 0, 0),  # datetime(year, month, day, hour, minute, second)
     'on_failure_callback':task_failure_callback
     # 'retries': 1,
@@ -43,7 +41,7 @@ default_args = {
 @dag(
     dag_id='openweathermap',
     default_args=default_args,
-    schedule_interval=timedelta(hours=3),
+    schedule_interval=timedelta(hours=12),
     catchup=False
 )
 def weather_etl():
@@ -71,8 +69,8 @@ def weather_etl():
                 ]
     secrets = get_secret("airflow/openweatherapi") 
     OPENWEATHERMAP_API_KEY = secrets["OPENWEATHERMAP_API_KEY"]
-    SMTP_USER = secrets["SMTP_USER"]
-    SMTP_PASSWORD = secrets["SMTP_PASSWORD"]
+    smtp_user = secrets["SMTP_USER"]
+    smtp_password = secrets["SMTP_PASSWORD"]
 
     @task
     def extract(api_results):
@@ -100,7 +98,7 @@ def weather_etl():
         return result
 
     @task
-    def test_task_fail():
+    def test_task_fail(test):
         raise ValueError("This task is designed to fail.")
 
     @task
@@ -154,6 +152,5 @@ def weather_etl():
     transformed_data = transform(extracted_destinations)
     test_task_fail(transformed_data)
     # load_s3(transformed_data)
-
 
 weather_etl()
