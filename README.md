@@ -24,6 +24,8 @@ Nothing needs to be installed locally
   - Configuration
     - secrets.backend : airflow.providers.amazon.aws.secrets.secrets_manager.SecretsManagerBackend
     - secrets.backend_kwargs : {"connections_prefix" : "airflow/connections", "variables_prefix" : "airflow/openweatherapi"}
+    - smtp.smtp_user :
+    - smtp.smtp_password :
       - "airflow/openweatherapi" should be your secret name
   - Permissions - Execution Role
     - Allow AWS to create default permissions

@@ -3,7 +3,9 @@ from airflow.models import Variable
 from airflow.providers.http.operators.http import HttpOperator
 from airflow.operators.email import EmailOperator
 from datetime import datetime, timedelta
+from airflow.utils.email import send_email
 
+import os
 import csv
 import json
 import boto3
@@ -23,13 +25,13 @@ def task_failure_callback(context):
         <p>Log URL: <a href="{failed_task.log_url}">Click here to view logs</a></p>
     """
 
-    email = EmailOperator(
-        task_id='email_failure_notification',
+    send_email(
+        # task_id='email_failure_notification',
         to='alan.nguyen.engineer@gmail.com',
         subject=subject,
         html_content=html_content,
     )
-    email.execute(context=context)
+    # email.execute(context=context)
 
 default_args = {
     'owner':'snowglobe',
@@ -71,6 +73,10 @@ def weather_etl():
     OPENWEATHERMAP_API_KEY = secrets["OPENWEATHERMAP_API_KEY"]
     smtp_user = secrets["SMTP_USER"]
     smtp_password = secrets["SMTP_PASSWORD"]
+    # smtp_password = secrets_manager.get_secret("SMTP_PASSWORD")
+    os.environ["AIRFLOW__SMTP__SMTP_USER"] = smtp_user
+    os.environ["AIRFLOW__SMTP__SMTP_PASSWORD"] = smtp_password
+
 
     @task
     def extract(api_results):
