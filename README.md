@@ -3,7 +3,10 @@
 API pipeline extracts data from OpenWeatherAPI, transforms the data into tabular form, and loads it into s3 every 3 hours. It uses Apache Airflow to orchestrate the ETL pipeline and Amazon MWAA to manage the workflow in the cloud.
 OpenWeatherAPI can be easily replaced with another API. 
 ## To-Do
+- [x] Add on failure callback email (Complete)
 - [ ] Vet MWAA Policy (Incomplete)
+- [ ] Move to parquet format (Incomplete)
+- [ ] Update for Docker to run locally (Incomplete)
 
 ## Installation
 Nothing needs to be installed locally
