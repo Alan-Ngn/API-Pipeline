@@ -1,6 +1,6 @@
 from airflow.decorators import dag, task
 from airflow.models import Variable
-from airflow.providers.http.operators.http import HttpOperator
+# from airflow.providers.http.operators.http import HttpOperator
 from airflow.operators.email import EmailOperator
 from datetime import datetime, timedelta
 from airflow.utils.email import send_email
