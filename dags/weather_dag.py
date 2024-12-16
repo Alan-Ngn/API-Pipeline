@@ -10,6 +10,7 @@ import csv
 import json
 import boto3
 import io
+import requests
 
 def get_secret(secret_name, region_name="us-west-1"):
     session = boto3.session.Session()
@@ -76,10 +77,24 @@ def weather_etl():
     os.environ["AIRFLOW__SMTP__SMTP_USER"] = smtp_user
     os.environ["AIRFLOW__SMTP__SMTP_PASSWORD"] = smtp_password
 
-
+    # @task
+    # def extract(api_results):
+    #     return json.loads(api_results)
+    
     @task
-    def extract(api_results):
-        return json.loads(api_results)
+    def extract_weather_data(destination, api_key=OPENWEATHERMAP_API_KEY):
+        response = requests.get(
+            url="https://api.openweathermap.org/data/2.5/weather",
+            params={
+                'lat':destination['lat'],
+                'lon':destination['lon'],
+                'appid': api_key,
+                'units':'metric'
+            }
+        )
+        response.raise_for_status()
+        return response.json()
+
 
     #transforming data
     @task
@@ -133,27 +148,30 @@ def weather_etl():
         finally:
             csv_buffer.close()
 
-    # extracting data with task
-    extracted_destinations=[]
-    for destination in destinations:
-        destination_task_id = destination['location'].replace(' ', '_').lower()
-        get_weather_results_task = HttpOperator(
-            task_id =f'weather_fetch_{destination_task_id}',
-            method = 'GET',
-            http_conn_id='openweathermap_api',
-            endpoint=f'/data/2.5/weather',
-            headers={"Content-Type": "application/json"},
-            data={
-                'lat':destination['lat'],
-                'lon':destination['lon'],
-                'appid':OPENWEATHERMAP_API_KEY,
-                'units':'metric'
-            },
-            do_xcom_push=True,
-        )
-        extracted_destinations.append(extract(api_results=get_weather_results_task.output))
 
-    transformed_data = transform(extracted_destinations)
+
+
+    # extracting data with task
+    # extracted_destinations=[]
+    # for destination in destinations:
+    #     destination_task_id = destination['location'].replace(' ', '_').lower()
+    #     get_weather_results_task = HttpOperator(
+    #         task_id =f'weather_fetch_{destination_task_id}',
+    #         method = 'GET',
+    #         http_conn_id='openweathermap_api',
+    #         endpoint=f'/data/2.5/weather',
+    #         headers={"Content-Type": "application/json"},
+    #         data={
+    #             'lat':destination['lat'],
+    #             'lon':destination['lon'],
+    #             'appid':OPENWEATHERMAP_API_KEY,
+    #             'units':'metric'
+    #         },
+    #         do_xcom_push=True,
+    #     )
+    #     extracted_destinations.append(extract(api_results=get_weather_results_task.output))
+    extracted_data = extract_weather_data.expand(destination=destinations)
+    transformed_data = transform(extracted_data)
     load_s3(transformed_data)
     # test_task_fail(transformed_data)
 
