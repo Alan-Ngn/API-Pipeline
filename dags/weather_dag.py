@@ -1,10 +1,13 @@
 from airflow.decorators import dag, task
 from airflow.models import Variable
 # from airflow.providers.http.operators.http import HttpOperator
-from airflow.operators.email import EmailOperator
+# from airflow.operators.email import EmailOperator
 from datetime import datetime, timedelta
 from airflow.utils.email import send_email
 
+import pandas as pd
+import pyarrow as pa
+import pyarrow.parquet as pq
 import os
 import csv
 import json
@@ -120,8 +123,29 @@ def weather_etl():
     # def test_task_fail(test):
     #     raise ValueError("This task is designed to fail.")
 
+    # @task
+    # def load_parquet_s3(data):
+    #     s3 = boto3.client('s3')
+    #     bucket_name = 'alan-learning-etl-project'
+    #     s3_key = 'output/output.parquet'
+
+    #     df = pd.DataFrame(data)
+    #     table = pa.Table.from_pandas(df)
+
+    #     parquet_buffer = io.BytesIO()
+    #     pq.write_table(table, parquet_buffer)
+
+    #     file = parquet_buffer.getvalue()
+
+    #     s3.put_object(
+    #         Bucket=bucket_name,
+    #         Key=s3_key,
+    #         Body=file
+    #     )
+    #     return f"s3://{bucket_name}/{s3_key}"
+
     @task
-    def load_s3(data):
+    def load_csv_s3(data):
         s3 = boto3.client('s3')
         bucket_name = 'alan-learning-etl-project'
         s3_key = 'output/output.csv'
@@ -136,17 +160,12 @@ def weather_etl():
 
         file = csv_buffer.getvalue()
 
-        try:
-            s3.put_object(
-                Bucket=bucket_name,
-                Key=s3_key,
-                Body=file
-            )
-            return f"s3://{bucket_name}/{s3_key}"
-        except Exception as e:
-            raise Exception(f"Failed to upload file to S3: {str(e)}")
-        finally:
-            csv_buffer.close()
+        s3.put_object(
+            Bucket=bucket_name,
+            Key=s3_key,
+            Body=file
+        )
+        return f"s3://{bucket_name}/{s3_key}"
 
 
 
@@ -172,8 +191,8 @@ def weather_etl():
     #     extracted_destinations.append(extract(api_results=get_weather_results_task.output))
     extracted_data = extract_weather_data.expand(destination=destinations)
     transformed_data = transform(extracted_data)
-    load_s3(transformed_data)
-    # test_task_fail(transformed_data)
+    load_csv_s3(transformed_data)
+    # test_task_fail(fail_test)
 
 
 weather_etl()

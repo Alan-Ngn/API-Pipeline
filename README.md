@@ -4,8 +4,9 @@ API pipeline extracts data from OpenWeatherAPI, transforms the data into tabular
 OpenWeatherAPI can be easily replaced with another API. 
 ## To-Do
 - [x] Add on failure callback email (Complete)
+- [x] Sequential Tasks to Dynamic Task Mapping (Complete)
 - [ ] Vet MWAA Policy (Incomplete)
-- [ ] Move to parquet format (Incomplete)
+- [x] Move to parquet format (Complete)
 - [ ] Update for Docker to run locally (Incomplete)
 
 ## Installation
@@ -36,9 +37,10 @@ Nothing needs to be installed locally
     - secrets.backend_kwargs : {"connections_prefix" : "airflow/connections", "variables_prefix" : "airflow/openweatherapi"}
       - "airflow/openweatherapi" should be your secret name
     - smtp.smtp_host : smtp.gmail.com
-    - smtp.smtp_smtp_mail_from : "your_email"
-    - smtp.smtp_port : 597
     - smtp.smtp_ssl : False
+    - smtp.smtp_smtp_mail_from : "your_email"
+    - smtp.smtp_port : 587
+
     - smtp.smtp_starttls : True
 
   - Permissions - Execution Role
