@@ -7,7 +7,7 @@ OpenWeatherAPI can be easily replaced with another API.
 - [x] Sequential Tasks to Dynamic Task Mapping (Complete)
 - [ ] Vet MWAA Policy (Incomplete)
 - [x] Move to parquet format (Complete)
-- [ ] Update for Docker to run locally (Incomplete)
+- [ ] Convert MWAA to become a Producer for Amazon Managed Streaming for Apache Kafka (Amazon MSK) (Incomplete)
 
 ## Installation
 Nothing needs to be installed locally
